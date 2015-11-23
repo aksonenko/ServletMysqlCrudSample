@@ -20,6 +20,8 @@
 	</script>
 
 	<form method="POST" action='BookController' name="form">
+		ID : <input type="text" readonly="readonly" name="id"
+            value="<c:out value="${item.id}" />" /> <br /> 
 		Name : <input
 			type="text" name="name" value="<c:out value="${item.name}" />" /><br /> 
 		Author : <input type="text" name="author"
