@@ -36,33 +36,33 @@ public class BookController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String forward = "";
 		String action = request.getParameter(ACTION_VALUE);
+		if (action != null)
+			switch (action) {
+			case ACTION_DELETE:
+				int itemId = Integer.parseInt(request
+						.getParameter(PARAMETER_ENTITY_ID));
+				dao.delete(itemId);
+				forward = PAGE_LIST;
+				request.setAttribute(ATTRIBUTE_LIST, dao.selectAll());
+				break;
 
-		switch (action) {
-		case ACTION_DELETE:
-			int itemId = Integer.parseInt(request
-					.getParameter(PARAMETER_ENTITY_ID));
-			dao.delete(itemId);
-			forward = PAGE_LIST;
-			request.setAttribute(ATTRIBUTE_LIST, dao.selectAll());
-			break;
+			case ACTION_EDIT:
+				forward = PAGE_EDIT;
+				int userId = Integer.parseInt(request
+						.getParameter(PARAMETER_ENTITY_ID));
+				Book item = dao.select(userId);
+				request.setAttribute(ATTRIBUTE_ITEM, item);
+				break;
 
-		case ACTION_EDIT:
-			forward = PAGE_EDIT;
-			int userId = Integer.parseInt(request
-					.getParameter(PARAMETER_ENTITY_ID));
-			Book item = dao.select(userId);
-			request.setAttribute(ATTRIBUTE_ITEM, item);
-			break;
+			case ACTION_LIST:
+				forward = PAGE_LIST;
+				request.setAttribute(ATTRIBUTE_LIST, dao.selectAll());
+				break;
 
-		case ACTION_LIST:
-			forward = PAGE_LIST;
-			request.setAttribute(ATTRIBUTE_LIST, dao.selectAll());
-			break;
-
-		default:
-			forward = PAGE_EDIT;
-			break;
-		}
+			default:
+				forward = PAGE_EDIT;
+				break;
+			}
 
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);

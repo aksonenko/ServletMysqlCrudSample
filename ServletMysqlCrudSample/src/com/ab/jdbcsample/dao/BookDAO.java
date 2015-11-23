@@ -153,6 +153,7 @@ public class BookDAO {
 			preparedStatement.setString(1, item.getName());
 			preparedStatement.setString(2, item.getAuthor());
 			preparedStatement.setLong(3, item.getDate().getTime());
+			preparedStatement.setLong(4, item.getId());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
