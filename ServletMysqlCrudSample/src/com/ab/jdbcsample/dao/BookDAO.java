@@ -13,6 +13,7 @@ import com.ab.jdbcsample.model.Book;
 
 public class BookDAO {
 	private static String SQL_INSERT = "INSERT INTO books (name, author, date) VALUE (?, ?, ?); ";
+	private static String SQL_UPDATE = "UPDATE books set name=?, author=?, date=? where id=?";
 	private static String SQL_SELECT = "SELECT * FROM books;";
 	private static String SQL_DELETE = "delete from books;";
 	private static String SQL_SELECT_BY_ID = "SELECT * FROM books where id = ?;";
@@ -143,9 +144,27 @@ public class BookDAO {
 		}
 	}
 
+	public void update(Book item) {
+		Connection con = null;
+		try {
+			con = MySqlConnection.getConnection();
+			PreparedStatement preparedStatement = con
+					.prepareStatement(SQL_UPDATE);
+			preparedStatement.setString(1, item.getName());
+			preparedStatement.setString(2, item.getAuthor());
+			preparedStatement.setLong(3, item.getDate().getTime());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(con);
+		}
+	}
+
 	private void close(Connection connection) {
 		try {
-			connection.close();
+			if (connection != null)
+				connection.close();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}

@@ -1,17 +1,15 @@
 package com.ab.jdbcsample.dao;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Properties;
 
 public class MySqlConnection {
 	private static Connection CONNECTION;
-	private static String URL;
-	private static String USERNAME;
-	private static String PASSWORD;
+	private static String URL = "jdbc:mysql://localhost/bookshop";
+	private static String USERNAME = "root";
+	private static String PASSWORD = "";
 
 	static {
 		try {
@@ -19,21 +17,21 @@ public class MySqlConnection {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-
-		Properties prop = new Properties();
-		FileInputStream in = null;
-		try {
-			in = new FileInputStream("database.properties");
-
-			prop.load(in);
-			in.close();
-		} catch (IOException e) {
-			System.out.println("Culdn't download " + "database properties.");
-		}
-		URL = prop.getProperty("jdbc.url");
-		USERNAME = prop.getProperty("jdbc.username");
-		PASSWORD = prop.getProperty("jdbc.password");
 	}
+
+	//
+	// Properties prop = new Properties();
+	// ClassLoader classLoader = Thread.currentThread()
+	// .getContextClassLoader();
+	// try {
+	// prop.load(classLoader.getResourceAsStream("database.properties"));
+	// } catch (IOException e) {
+	// System.out.println("Culdn't download " + "database properties.");
+	// }
+	// URL = prop.getProperty("jdbc.url");
+	// USERNAME = prop.getProperty("jdbc.username");
+	// PASSWORD = prop.getProperty("jdbc.password");
+	// }
 
 	private MySqlConnection() {
 
