@@ -113,7 +113,7 @@ public class BookDAO {
 	}
 
 	/**
-	 * Method insert onject into database
+	 * Method inserts object into database
 	 * 
 	 * @param item
 	 *            - the book will be inserted

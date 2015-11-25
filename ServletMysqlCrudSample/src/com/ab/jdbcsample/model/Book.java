@@ -60,4 +60,8 @@ public class Book implements Comparable<Book> {
 	public int compareTo(Book o) {
 		return this.name.compareTo(o.getName());
 	}
+
+	public boolean isNew() {
+		return id == null;
+	}
 }
