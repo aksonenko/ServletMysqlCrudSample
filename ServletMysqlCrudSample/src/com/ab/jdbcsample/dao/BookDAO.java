@@ -18,10 +18,7 @@ public class BookDAO {
 	private static String SQL_DELETE = "delete from books;";
 	private static String SQL_SELECT_BY_ID = "SELECT * FROM books where id = ?;";
 	private static String SQL_DELETE_BY_ID = "delete from books where id = ?;";
-	private static final String FIELD_ID = "id";
-	private static final String FIELD_NAME = "name";
-	private static final String FIELD_AUTHOR = "author";
-	private static final String FIELD_DATE = "date";
+
 	private static BookDAO BOOK_DAO = null;
 
 	private BookDAO() {
@@ -173,10 +170,10 @@ public class BookDAO {
 
 	private Book extractBook(ResultSet rs) throws SQLException {
 		Book item = new Book();
-		item.setId(rs.getLong(FIELD_ID));
-		item.setName(rs.getString(FIELD_NAME));
-		item.setAuthor(rs.getString(FIELD_AUTHOR));
-		item.setDate(new Date(rs.getLong(FIELD_DATE)));
+		item.setId(rs.getLong(Book.FIELD_ID));
+		item.setName(rs.getString(Book.FIELD_NAME));
+		item.setAuthor(rs.getString(Book.FIELD_AUTHOR));
+		item.setDate(new Date(rs.getLong(Book.FIELD_DATE)));
 		return item;
 	}
 }

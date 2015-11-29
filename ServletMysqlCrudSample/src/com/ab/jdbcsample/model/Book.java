@@ -2,7 +2,16 @@ package com.ab.jdbcsample.model;
 
 import java.util.Date;
 
+import com.ab.jdbcsample.util.DateTimeHelper;
+
 public class Book implements Comparable<Book> {
+	public static final String LIST = "books";
+	public static final String ITEM = "book";
+	public static final String FIELD_ID = "id";
+	public static final String FIELD_NAME = "name";
+	public static final String FIELD_AUTHOR = "author";
+	public static final String FIELD_DATE = "date";
+
 	private Long id;
 	private String name;
 	private String author;
@@ -45,7 +54,11 @@ public class Book implements Comparable<Book> {
 	}
 
 	public Book(String name, String author, Date date) {
-		super();
+		this(null, name, author, date);
+	}
+
+	public Book(Long id, String name, String author, Date date) {
+		this.id = id;
 		this.name = name;
 		this.author = author;
 		this.date = date;
@@ -53,7 +66,8 @@ public class Book implements Comparable<Book> {
 
 	@Override
 	public String toString() {
-		return "Book [name=" + name + ", autor=" + author + "]";
+		return "Book [id=" + id + ", name=" + name + ", autor=" + author
+				+ ", date=" + DateTimeHelper.getSimpleDateTime(date) + "]";
 	}
 
 	@Override

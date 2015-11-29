@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE university SYSTEM "booksDTD.dtd">
+<books>
+	<book>
+		<id>1</id>
+		<name>Java</name>
+		<author>Shiltd</author>
+		<date>12/10/2010</date>
+	</book>
+	<book>
+		<id>2</id>
+		<name>Clean code</name>
+		<author>Martin</author>
+		<date>12/06/2009</date>
+	</book>
+</books>

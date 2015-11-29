@@ -1,9 +1,7 @@
 package com.ab.jdbcsample.dao;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.Properties;
 
 public class MySqlConnection {
 	private static Connection CONNECTION;
